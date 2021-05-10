@@ -1,0 +1,5 @@
+opencv-contrib-python
+gym
+Box2D
+tensorflow~=2.4.1
+numpy
