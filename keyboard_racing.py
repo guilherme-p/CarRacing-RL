@@ -2,10 +2,10 @@ import gym
 import numpy as np
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     gym.envs.register(
-        id='CarRacing-v1', # CHANGED
-        entry_point='gym.envs.box2d:CarRacing',
+        id="CarRacing-v1", # CHANGED
+        entry_point="gym.envs.box2d:CarRacing",
         max_episode_steps=2000, # CHANGED FROM 1000
         reward_threshold=900,
     )
@@ -45,22 +45,16 @@ if __name__ == '__main__':
         if k == key.S:
             a[2] = 0
 
-    env = gym.make('CarRacing-v1')
+    env = gym.make("CarRacing-v1")
     env.render()
 
     env.viewer.window.on_key_press = key_press
     env.viewer.window.on_key_release = key_release
 
-    record_video = False
+    is_open = True
 
-    if record_video:
-        from gym.wrappers.monitor import Monitor
-        env = Monitor(env, "/tmp/video-test", force=True)
-
-    isopen = True
-
-    while isopen:
-        env.reset()
+    while is_open:
+        init_state = env.reset()
         total_reward = 0.0
         steps = 0
         restart = False
@@ -74,9 +68,9 @@ if __name__ == '__main__':
                 print("step {} total_reward {:+0.2f}".format(steps, total_reward))
 
             steps += 1
-            isopen = env.render()
+            is_open = env.render()
 
-            if done or restart or isopen == False:
+            if done or restart or is_open == False:
                 break
             
     env.close()
