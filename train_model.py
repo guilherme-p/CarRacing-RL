@@ -3,14 +3,15 @@ import gym
 from collections import deque
 from DQNAgent import DQNAgent
 from helper_functions import state2gray, generate_input
+import datetime
 
-RENDER                        = True
+RENDER                        = False
 STARTING_EPISODE              = 1
 ENDING_EPISODE                = 1000
 EPSILON                       = 1
 SKIP_FRAMES                   = 2
 TRAINING_BATCH_SIZE           = 64
-SAVE_TRAINING_FREQUENCY       = 25
+SAVE_TRAINING_FREQUENCY       = 5
 UPDATE_TARGET_MODEL_FREQUENCY = 5
 
 if __name__ == "__main__":
@@ -23,7 +24,7 @@ if __name__ == "__main__":
 
     if args.record:
         from gym.wrappers.monitor import Monitor
-        env = Monitor(env, "./videos", force=True)
+        env = Monitor(env, "./videos", video_callable=False, force=True)
     
     agent = DQNAgent(epsilon=EPSILON)
 
@@ -31,6 +32,8 @@ if __name__ == "__main__":
         agent.load(args.model)
 
     for e in range(STARTING_EPISODE, ENDING_EPISODE+1):
+        print("{}: Starting episode {}/{}".format(datetime.datetime.now(), e, ENDING_EPISODE), flush=True)
+
         init_state = env.reset()
         init_state = state2gray(init_state)
 

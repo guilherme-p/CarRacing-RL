@@ -1,6 +1,5 @@
 opencv-contrib-python
 gym
 Box2D
-tensorflow>=2.4
+tensorflow==2.4.0
 numpy
-cv2
