@@ -5,11 +5,11 @@ from DQNAgent import DQNAgent
 from helper_functions import state2gray, generate_input
 import datetime
 
-RENDER                        = False
+RENDER                        = True
 STARTING_EPISODE              = 1
 ENDING_EPISODE                = 1000
 EPSILON                       = 1
-SKIP_FRAMES                   = 2
+SKIP_FRAMES                   = 5
 TRAINING_BATCH_SIZE           = 64
 SAVE_TRAINING_FREQUENCY       = 5
 UPDATE_TARGET_MODEL_FREQUENCY = 5
