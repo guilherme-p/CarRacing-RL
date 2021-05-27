@@ -40,9 +40,9 @@ class DQNAgent:
     def build_model(self):
         # Neural Net for Deep-Q learning Model
         model = Sequential()
-        model.add(Conv2D(filters=6, kernel_size=(7, 7), strides=3, activation="relu", input_shape=(96, 96, self.frame_stack_num)))
+        model.add(Conv2D(filters=8, kernel_size=(6, 6), strides=2, activation="relu", input_shape=(96, 96, self.frame_stack_num)))
         model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(filters=12, kernel_size=(4, 4), activation="relu"))
+        model.add(Conv2D(filters=14, kernel_size=(4, 4), activation="relu"))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Flatten())
         model.add(Dense(216, activation="relu"))
