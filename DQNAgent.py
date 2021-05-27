@@ -45,7 +45,7 @@ class DQNAgent:
         model.add(Conv2D(filters=14, kernel_size=(4, 4), activation="relu"))
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Flatten())
-        model.add(Dense(216, activation="relu"))
+        model.add(Dense(256, activation="relu"))
         model.add(Dense(len(self.action_space), activation=None))
         model.compile(loss="mean_squared_error", optimizer=Adam(lr=self.learning_rate, epsilon=1e-7))
 
