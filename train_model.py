@@ -17,14 +17,9 @@ UPDATE_TARGET_MODEL_FREQUENCY = 5
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Training a DQN agent to play CarRacing.")
     parser.add_argument("-m", "--model", help="Specify the last trained model path if you want to continue training after it.")
-    parser.add_argument("-r", "--record", help="Specify if you want to record the training into ./videos/ folder", action="store_true")
     args = parser.parse_args()
 
     env = gym.make("CarRacing-v0")
-
-    if args.record:
-        from gym.wrappers.monitor import Monitor
-        env = Monitor(env, "./videos", video_callable=False, force=True)
     
     agent = DQNAgent(epsilon=EPSILON)
 
@@ -57,12 +52,8 @@ if __name__ == "__main__":
                 if done:
                     break
 
-            # If continually getting negative reward 10 times after the tolerance steps, terminate this episode
+            # If continually getting negative reward 25 times after the tolerance steps, terminate this episode
             negative_reward_counter = negative_reward_counter + 1 if time_frame_counter > 50 and reward < 0 else 0
-
-            # Extra bonus for the model if it uses full gas
-            if action[1] == 1 and action[2] == 0:
-                reward *= 1.5
 
             total_reward += reward
 
