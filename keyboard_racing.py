@@ -3,13 +3,6 @@ import numpy as np
 
 
 if __name__ == "__main__":
-    gym.envs.register(
-        id="CarRacing-v1", # CHANGED
-        entry_point="gym.envs.box2d:CarRacing",
-        max_episode_steps=2000, # CHANGED FROM 1000
-        reward_threshold=900,
-    )
-
     from pyglet.window import key
 
     a = np.array([0.0, 0.0, 0.0])
@@ -45,7 +38,7 @@ if __name__ == "__main__":
         if k == key.S:
             a[2] = 0
 
-    env = gym.make("CarRacing-v1")
+    env = gym.make("CarRacing-v0")
     env.render()
 
     env.viewer.window.on_key_press = key_press
