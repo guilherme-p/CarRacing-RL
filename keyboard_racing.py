@@ -23,7 +23,7 @@ if __name__ == "__main__":
             a[1] = +1.0
 
         if k == key.S:
-            a[2] = +0.8  # set 1.0 for wheels to block to zero rotation
+            a[2] = +0.2 
 
     def key_release(k, mod):
         if k == key.A and a[0] == -1.0:
